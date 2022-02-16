@@ -1,34 +1,53 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.Write("Привет!");
+Console.Write("Привет! ");
 Console.WriteLine("Поиграем? (да)");
 var isPlaying = Console.ReadLine() == "да" ?  true :  false;
-//enum Res { Больше, Меньше, Угадал }
-
-if (isPlaying)
-{
+var attemptCounter = 0;
+while (isPlaying){
     (int startNum, int endNum) range = (1, 10);
     Random r = new Random();
-    int guesedNum = r.Next(range.startNum, 2);//range.endNum);
-    Console.Write($"Я загадал число от {range.startNum} до {range.endNum}.");
-    Console.Write("Попробуй угадать");
-    Console.Write($"{guesedNum}");
-    String answer = Console.ReadLine();
-    
-
-    switch (answer)
+    int secretNum = r.Next(range.startNum, range.endNum);
+    Console.Write($"Я загадал число от {range.startNum} до {range.endNum}. ");
+    Console.WriteLine("Попробуй угадать");
+    //Console.WriteLine($"{secretNum}");
+    var isGuesed = false;
+    while (!isGuesed)
     {
-        case "":
-            Console.WriteLine("");
-            break;
+        attemptCounter++;
+        int userNum=-1;
         
-        default:
-            Console.WriteLine("");
-            break;
+        var isIntNum = false;
+        Console.WriteLine($"Введи число от {range.startNum} до {range.endNum}");
+
+        while (!isIntNum & (userNum<range.startNum | userNum > range.endNum))
+        { 
+            string? userInput = Console.ReadLine();
+            isIntNum = int.TryParse(userInput, out userNum);
+            if (!isIntNum)
+            { 
+                Console.WriteLine($"Ты ввел {userInput}"); 
+                Console.WriteLine($"Попробуй еще раз. Введи число от {range.startNum} до {range.endNum}. Твое число: ");
+            }
+        }
+        if (userNum < secretNum)
+        {
+            Console.WriteLine($"Мое число больше твоего {userNum}. \\_(°.° )_/");
+        }
+        else if (userNum > secretNum)
+        {
+            Console.WriteLine($"Твое число {userNum} больше моего. W(°O°)W");
+        }
+        else
+        {
+            Console.WriteLine($"Супер! Ты угадал! Мое число {secretNum}. (*^-^*)<3");
+            Console.WriteLine($"Попыток: {attemptCounter}.");
+            
+            isGuesed = true;
+            attemptCounter = 0;
+        }
     }
-       
-    
-    Console.ReadLine();
+    Console.WriteLine("Еще разок? (да)");
+    isPlaying = Console.ReadLine() == "да" ?  true :  false;
 }
-Console.Write("Пока!");
-Console.ReadLine();
+Console.Write("Пока! Мне понравилось! (^*^)");
