@@ -2,10 +2,11 @@
 
 Console.Write("Привет! ");
 Console.WriteLine("Поиграем? (да)");
-var isPlaying = Console.ReadLine() == "да" ?  true :  false;
+var yesOption = new[] { "да", "lf" }; //lf - если пользователь не сменил раскладку разрешим просто продолжить
+var isPlaying = yesOption.Contains(Console.ReadLine().ToString().ToLower()) ?  true :  false;
 var attemptCounter = 0;
 while (isPlaying){
-    (int startNum, int endNum) range = (1, 10);
+    (int startNum, int endNum) range = (0, 999);
     Random r = new Random();
     int secretNum = r.Next(range.startNum, range.endNum);
     Console.Write($"Я загадал число от {range.startNum} до {range.endNum}. ");
@@ -51,3 +52,4 @@ while (isPlaying){
     isPlaying = Console.ReadLine() == "да" ?  true :  false;
 }
 Console.Write("Пока! Мне понравилось! (^*^)");
+
