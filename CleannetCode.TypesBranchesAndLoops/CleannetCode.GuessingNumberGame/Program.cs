@@ -2,7 +2,7 @@
 
 Console.Write("Привет! ");
 Console.WriteLine("Как тебя зовут?");
-String? userName = Console.ReadLine().ToString();
+String? userName = Console.ReadLine();
 if (String.IsNullOrEmpty(userName)) {
     Console.WriteLine("Не видно ^^) Как тебя зовут?");
     userName = Console.ReadLine();
@@ -22,33 +22,37 @@ while (isPlaying){
     while (!isGuesed)
     {
         attemptCounter++;
-        int userNum=-1;
-        
-        var isIntNum = false;
+        int goodUserNum =-1;
+        var isGoodUserNum = false;
         Console.WriteLine($"Введи число от {range.startNum} до {range.endNum}");
-
-        while (!isIntNum & (userNum<range.startNum | userNum > range.endNum))
-        { 
-            string? userInput = Console.ReadLine();
-            isIntNum = int.TryParse(userInput, out userNum);
-            if (!isIntNum)
-            { 
-                Console.WriteLine($"Ты ввел {userInput}"); 
-                Console.WriteLine($"Попробуй еще раз. Введи число от {range.startNum} до {range.endNum}. Твое число: ");
+        String? userInput = Console.ReadLine();
+        
+        while (!isGoodUserNum)
+        {
+            if (!String.IsNullOrEmpty(userInput) && int.TryParse(userInput, out goodUserNum) &&
+                goodUserNum >= range.startNum && goodUserNum <= range.endNum)
+            {
+                isGoodUserNum = true;
+            }
+            else
+            {
+                Console.WriteLine($"Попробуй еще раз. Ты ввел - {userInput}," +
+                                  $"а нужно - число от {range.startNum} до {range.endNum} ");
+                userInput = Console.ReadLine();
             }
         }
-        if (userNum < secretNum)
+        if (goodUserNum < secretNum)
         {
-            Console.WriteLine($"Мое число больше твоего {userNum}. \\_(°.° )_/");
+            Console.WriteLine($"Мое число больше твоего {goodUserNum}. \\_(°.° )_/");
         }
-        else if (userNum > secretNum)
+        else if (goodUserNum > secretNum)
         {
-            Console.WriteLine($"Твое число {userNum} больше моего. W(°O°)W");
+            Console.WriteLine($"Твое число {goodUserNum} больше моего. W(°O°)W");
         }
         else
         {
-            Console.WriteLine($"Супер! Ты угадал! Мое число {secretNum}. (*^-^*)<3");
-            Console.WriteLine($"Попыток: {attemptCounter}.");
+            Console.WriteLine($"Супер! Ты угадал! Мое число - {secretNum}. (*^-^*)<3");
+            Console.WriteLine($"Попыток: {attemptCounter}. Ты молодец, {userName}!!");
             
             isGuesed = true;
             attemptCounter = 0;
