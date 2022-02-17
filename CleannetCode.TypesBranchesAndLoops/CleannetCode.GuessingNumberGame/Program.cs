@@ -1,10 +1,4 @@
-﻿
-/// По дз - найти ошибки
-/// 1 - нет проверки на вхождение пользовательского ввода в диапазон
-/// 2 - пользователь может ввести пустое имя - имя пользователя String?. Добавила проверку
-
-
-Console.Write("Привет! ");
+﻿Console.Write("Привет! ");
 Console.WriteLine("Как тебя зовут?");
 String? userName = Console.ReadLine();
 if (String.IsNullOrEmpty(userName)) {
