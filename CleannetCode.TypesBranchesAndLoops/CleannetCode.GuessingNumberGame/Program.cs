@@ -12,7 +12,7 @@ var attemptCounter = 0;
 while (isPlaying){
     (int startNum, int endNum) range = (0, 999);
     Random r = new Random();
-    int secretNum = r.Next(range.startNum, range.endNum);
+    int secretNum = r.Next(range.startNum, range.endNum+1); //если не добавить +1 - 999 - не включит
     Console.Write($"Я загадал число от {range.startNum} до {range.endNum}. ");
     Console.WriteLine("Попробуй угадать");
     //Console.WriteLine($"{secretNum}");
