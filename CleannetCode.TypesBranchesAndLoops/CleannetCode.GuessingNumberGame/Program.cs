@@ -1,9 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 Console.Write("Привет! ");
-Console.WriteLine("Поиграем? (да)");
+Console.WriteLine("Как тебя зовут?");
+String? userName = Console.ReadLine().ToString();
+if (String.IsNullOrEmpty(userName)) {
+    Console.WriteLine("Не видно ^^) Как тебя зовут?");
+    userName = Console.ReadLine();
+}
+Console.WriteLine($"Поиграем, {userName}? (да)");
 var yesOption = new[] { "да", "lf" }; //lf - если пользователь не сменил раскладку разрешим просто продолжить
-var isPlaying = yesOption.Contains(Console.ReadLine().ToString().ToLower()) ?  true :  false;
+var isPlaying = yesOption.Contains(Console.ReadLine().ToLower()) ?  true :  false;
 var attemptCounter = 0;
 while (isPlaying){
     (int startNum, int endNum) range = (0, 999);
@@ -51,5 +57,5 @@ while (isPlaying){
     Console.WriteLine("Еще разок? (да)");
     isPlaying = Console.ReadLine() == "да" ?  true :  false;
 }
-Console.Write("Пока! Мне понравилось! (^*^)");
+Console.Write($"Пока, {userName}! Мне понравилось! (^*^)");
 
