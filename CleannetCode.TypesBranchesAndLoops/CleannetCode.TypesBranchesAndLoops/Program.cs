@@ -1,12 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Text;
+﻿using System.Text;
 
 Console.OutputEncoding = Encoding.UTF8;
 Console.WriteLine("Hello, World!");
-    
- 
- /*Types
+
+/*Types
 Value types                         Reference Types - class, record, delegate, array, or interface
 enums                               String
                                     Array
@@ -18,7 +15,6 @@ int
 bool 
 char
 ...
-
 */
 
 Console.WriteLine(1.ToString() + " type - " + 1.GetType());
@@ -28,7 +24,7 @@ Console.WriteLine(long.MaxValue);
 Console.WriteLine(long.MinValue);
 
 var let = 23456.ToString();
-Console.WriteLine(let + " type - "+ let.GetType());
+Console.WriteLine(let + " type - " + let.GetType());
 
 int count = 100;
 count = ++count;
@@ -38,7 +34,7 @@ Console.WriteLine(count); //103
 
 Console.WriteLine(0.1 + 0.2 == 0.3); // false
 Console.WriteLine(0.1F + 0.2F == 0.3F); // false  !!! =true
-Console.WriteLine(0.1F + 0.1F +0.1F + 0.1F + 0.1F == 0.5F); // ??
+Console.WriteLine(0.1F + 0.1F + 0.1F + 0.1F + 0.1F == 0.5F); // ??
 Console.WriteLine(0.1M + 0.2M == 0.3M); // true
 
 sbyte bValue = 1;
@@ -86,11 +82,13 @@ Console.WriteLine($"Limits of [{string.Join(" ", ys)}] are {minimum} and {maximu
         {
             min = i;
         }
+
         if (i > max)
         {
             max = i;
         }
     }
+
     return (min, max);
 }
 
@@ -103,7 +101,7 @@ Console.WriteLine(obj.GetType());
 Operation operations = Add;
 var result = operations(4, 5);
 Console.WriteLine(result);
-operations = Multiply; 
+operations = Multiply;
 result = operations(4, 5);
 Console.WriteLine(result);
 int Add(int x, int y) => x + y;
@@ -132,6 +130,7 @@ switch (answer)
 }
 
 delegate int Operation(int x, int y);
+
 delegate void Message();
 
 // Custom types
